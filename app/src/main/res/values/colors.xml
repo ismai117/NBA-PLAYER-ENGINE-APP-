@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="celtics_one">#008348</color>
+    <color name="celtics_two">#046137</color>
+
+    <color name="thunder_one">#007AC1</color>
+    <color name="thunder_two">#002D62</color>
+
+    <color name="timberwolves_one">#0C2340</color>
+    <color name="timberwolves_two">#08182C</color>
+
+    <color name="nets_one">#171717</color>
+    <color name="nets_two">#000000</color>
+
+    <color name="magic_one">#0077c0</color>
+    <color name="magic_two">#026AAA</color>
+
+    <color name="warriors_one">#006bb6</color>
+    <color name="warriors_two">#005FA1</color>
+
+    <color name="pelicans_one">#002b5c</color>
+    <color name="pelicans_two">#01244C</color>
+
+    <color name="grizzlies_one">#5d76a9</color>
+    <color name="grizzlies_two">#4F648F</color>
+
+    <color name="hawks_one">#e03a3e</color>
+    <color name="hawks_two">#B53033</color>
+
+    <color name="clippers_one">#c8102e</color>
+    <color name="clippers_two">#A50D25</color>
+
+    <color name="lakers_one">#552583</color>
+    <color name="lakers_two">#3F1B61</color>
+
+    <color name="heat_one">#98002e</color>
+    <color name="heat_two">#7C0026</color>
+
+    <color name="suns_one">#231471</color>
+    <color name="suns_two">#170E4A</color>
+
+    <color name="nuggets_one">#102749</color>
+    <color name="nuggets_two">#0A182C</color>
+
+    <color name="sevsixers_one">#006bb6</color>
+    <color name="sevsixers_two">#015997</color>
+
+    <color name="bucks_one">#00471b</color>
+    <color name="bucks_two">#002B10</color>
+
+    <color name="blazers_one">#e03a3e</color>
+    <color name="blazers_two">#BF3235</color>
+
+    <color name="pistons_one">#1d428a</color>
+    <color name="pistons_two">#17346C</color>
+
+    <color name="wizards_one">#002b5c</color>
+    <color name="wizards_two">#002147</color>
+
+    <color name="pacers_one">#002d62</color>
+    <color name="pacers_two">#002149</color>
+
+    <color name="rockets_one">#ce1141</color>
+    <color name="rockets_two">#B50F39</color>
+
+    <color name="mavericks_one">#0053bc</color>
+    <color name="mavericks_two">#0148A3</color>
+
+    <color name="hornets_one">#00788c</color>
+    <color name="hornets_two">#006171</color>
+
+    <color name="bulls_one">#ce1141</color>
+    <color name="bulls_two">#AF0E37</color>
+
+    <color name="knicks_one">#006bb6</color>
+    <color name="knicks_two">#015A98</color>
+
+    <color name="kings_one">#5a2b81</color>
+    <color name="kings_two">#442061</color>
+
+    <color name="jazz_one">#002b5c</color>
+    <color name="jazz_two">#001E40</color>
+
+    <color name="cleveland_one">#6f263d</color>
+    <color name="cleveland_two">#551D2F</color>
+
+    <color name="raptors_one">#000000</color>
+    <color name="raptors_two">#000000</color>
+
+
+    <color name="spurs_one">#000000</color>
+    <color name="spurs_two">#000000</color>
+
+
+</resources>
