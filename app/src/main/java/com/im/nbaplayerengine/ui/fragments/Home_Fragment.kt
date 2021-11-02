@@ -10,6 +10,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.im.nbaplayerengine.R
+import com.im.nbaplayerengine.databinding.FragmentHomeBinding
 import com.im.nbaplayerengine.ui.viewmodels.PlayerViewModel
 import com.im.nbaplayerengine.ui.adapters.PlayerAdapter
 import com.im.nbaplayerengine.ui.viewmodels.TeamViewModel
@@ -25,38 +26,58 @@ import java.util.zip.Inflater
 @AndroidEntryPoint
 class Home_Fragment : Fragment() {
 
-    val playerModel: PlayerViewModel by viewModels()
+    private var homeBinding: FragmentHomeBinding? = null
+    private val binding get() = homeBinding!!
+    private val playerModel: PlayerViewModel by viewModels()
+    private lateinit var playerAdapter: PlayerAdapter
 
 
-    lateinit var playerAdapter: PlayerAdapter
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        playerAdapter = PlayerAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        homeBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        val view = inflater.inflate(R.layout.fragment_home_, container, false)
-
-
-        playerAdapter = PlayerAdapter()
 
         playerModel.allPlayers.observe(this.viewLifecycleOwner) { result ->
 
-            playerAdapter.setPLayer(result.data)
-            view.player_recycler_view.layoutManager = LinearLayoutManager(this.context)
-            view.player_recycler_view.adapter = playerAdapter
+
+            result?.let {
+
+                if (result.data != null){
+                initRecycler()
+                playerAdapter.setPLayer(result.data)
+                binding.homeProgressBar.isVisible = result is Resource.Loading && result.data.isNullOrEmpty()
+                binding.homeTextError.isVisible = result is Resource.Error && result.data.isNullOrEmpty()
+                binding.homeTextError.text = result.error?.localizedMessage
+
+                } else {
+                    Log.d("player_error", "${result.error?.message}")
+                }
 
 
-            home_ProgressBar.isVisible = result is Resource.Loading && result.data.isNullOrEmpty()
-            home_text_error.isVisible = result is Resource.Error && result.data.isNullOrEmpty()
-            home_text_error.text = result.error?.localizedMessage
+            }
+
 
         }
+
 
 
         setHasOptionsMenu(true)
 
         return view
+    }
+
+    private fun initRecycler() {
+        binding.playerRecyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding.playerRecyclerView.setHasFixedSize(true)
+        binding.playerRecyclerView.adapter = playerAdapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -84,6 +105,11 @@ class Home_Fragment : Fragment() {
 
         })
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        homeBinding = null
     }
 
 

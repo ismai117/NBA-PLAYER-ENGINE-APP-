@@ -2,10 +2,7 @@ package com.im.nbaplayerengine.data.repository
 
 import androidx.lifecycle.asLiveData
 import androidx.room.withTransaction
-import com.im.nbaplayerengine.data.cache.EngineDatabase
-import com.im.nbaplayerengine.data.cache.PlayerCacheEntity
-import com.im.nbaplayerengine.data.cache.PlayerDao
-import com.im.nbaplayerengine.data.cache.TeamDao
+import com.im.nbaplayerengine.data.cache.*
 import com.im.nbaplayerengine.network.Retrofit.WebService
 import com.im.nbaplayerengine.utils.networkBoundResource
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +14,7 @@ class Repository
 constructor(
     private val playerDao: PlayerDao,
     private val teamDao: TeamDao,
+    private val seasonDao: SeasonDao,
     private val webSerice: WebService,
     private val engineDatabase: EngineDatabase
 ){
@@ -51,6 +49,24 @@ constructor(
             }
         }
     )
+
+
+    fun getSeasons(host: String, key: String, playerId: Int) = networkBoundResource(
+        query = {
+            seasonDao.getSeasons()
+        },
+        fetch = {
+            webSerice.getSeasons(host = host, key = key, playerId = playerId)
+        },
+        saveFetchResult = { seasons ->
+            engineDatabase.withTransaction {
+                seasonDao.deleteAllSeasons()
+                seasonDao.insert(seasons)
+            }
+        }
+    )
+
+
 
 
 

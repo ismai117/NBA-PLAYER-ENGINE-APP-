@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.im.nbaplayerengine.data.cache.EngineDatabase
 import com.im.nbaplayerengine.data.cache.PlayerDao
+import com.im.nbaplayerengine.data.cache.SeasonDao
 import com.im.nbaplayerengine.data.cache.TeamDao
 import dagger.Module
 import dagger.Provides
@@ -38,6 +39,12 @@ object databaseModule {
     @Singleton
     fun provideTeamDao(engineDatabase: EngineDatabase): TeamDao{
         return engineDatabase.getTeamDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSeasonDao(engineDatabase: EngineDatabase): SeasonDao{
+        return engineDatabase.getSeasonDao()
     }
 
 }
