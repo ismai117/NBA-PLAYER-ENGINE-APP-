@@ -6,16 +6,17 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.im.nbaplayerengine.R
-import com.im.nbaplayerengine.data.cache.PlayerCacheEntity
+import com.im.nbaplayerengine.data.local.players.PlayerCacheEntity
+import com.im.nbaplayerengine.model.player.Player
 import com.im.nbaplayerengine.ui.fragments.Home_FragmentDirections
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.player_item_layout.view.*
 
 class PlayerAdapter : RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
 
-    lateinit var players: List<PlayerCacheEntity>
+    lateinit var players: List<Player>
 
-    fun setPLayer(players: List<PlayerCacheEntity>?){
+    fun setPLayer(players: List<Player>?){
         this.players = players!!
         notifyDataSetChanged()
     }
@@ -36,7 +37,7 @@ class PlayerAdapter : RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
 
 
     class PlayerViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview){
-        fun bind(player: PlayerCacheEntity){
+        fun bind(player: Player){
 
             itemView.playerFullName.text = "${player.firstName} ${player.lastName}"
 
@@ -45,7 +46,7 @@ class PlayerAdapter : RecyclerView.Adapter<PlayerAdapter.PlayerViewHolder>() {
 
             itemView.setOnClickListener {
                 val action = Home_FragmentDirections.actionHomeFragmentToPlayerProfileFragment()
-                action.playerCacheEntity = player
+                action.player = player
                 Navigation.findNavController(it).navigate(action)
             }
 

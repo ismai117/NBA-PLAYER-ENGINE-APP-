@@ -24,8 +24,8 @@
             app:destination="@id/home_Fragment" />
         <argument
             app:nullable="true"
-            android:name="PlayerCacheEntity"
-            app:argType="com.im.nbaplayerengine.data.cache.PlayerCacheEntity"
+            android:name="Player"
+            app:argType="com.im.nbaplayerengine.model.player.Player"
             android:defaultValue="@null" />
 
     </fragment>

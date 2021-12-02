@@ -1,6 +1,8 @@
 package com.im.nbaplayerengine.ui.fragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.*
 import android.view.View.inflate
@@ -9,13 +11,14 @@ import androidx.fragment.app.Fragment
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.im.nbaplayerengine.R
 import com.im.nbaplayerengine.databinding.FragmentHomeBinding
 import com.im.nbaplayerengine.ui.viewmodels.PlayerViewModel
 import com.im.nbaplayerengine.ui.adapters.PlayerAdapter
 import com.im.nbaplayerengine.ui.viewmodels.TeamViewModel
 import com.im.nbaplayerengine.utils.Resource
-import com.im.nbaplayerengine.utils.onQueryTextChanegd
+import com.im.nbaplayerengine.utils.onQueryTextChanged
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_home_.*
 import kotlinx.android.synthetic.main.fragment_home_.view.*
@@ -37,6 +40,8 @@ class Home_Fragment : Fragment() {
         playerAdapter = PlayerAdapter()
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,12 +55,21 @@ class Home_Fragment : Fragment() {
 
             result?.let {
 
-                if (result.data != null){
-                initRecycler()
-                playerAdapter.setPLayer(result.data)
-                binding.homeProgressBar.isVisible = result is Resource.Loading && result.data.isNullOrEmpty()
-                binding.homeTextError.isVisible = result is Resource.Error && result.data.isNullOrEmpty()
-                binding.homeTextError.text = result.error?.localizedMessage
+                if (result.data != null) {
+
+                    initRecycler()
+                    playerAdapter.setPLayer(result.data)
+
+
+                    binding.homeProgressBar.isVisible =
+                        result is Resource.Loading && result.data.isNullOrEmpty()
+
+                    binding.homeTextError.isVisible =
+                        result is Resource.Error && result.data.isNullOrEmpty()
+
+                    binding.homeTextError.text = result.error?.localizedMessage
+
+
 
                 } else {
                     Log.d("player_error", "${result.error?.message}")
@@ -74,10 +88,11 @@ class Home_Fragment : Fragment() {
         return view
     }
 
+
     private fun initRecycler() {
-        binding.playerRecyclerView.layoutManager = LinearLayoutManager(this.context)
-        binding.playerRecyclerView.setHasFixedSize(true)
         binding.playerRecyclerView.adapter = playerAdapter
+        binding.playerRecyclerView.layoutManager = LinearLayoutManager(this.requireContext())
+        binding.playerRecyclerView.setHasFixedSize(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -87,14 +102,15 @@ class Home_Fragment : Fragment() {
         val searchItem = menu.findItem(R.id.menu_search)
         val searchView = searchItem.actionView as? SearchView
 
-        searchView?.onQueryTextChanegd {
-            searchDatabase(query = it)
+        searchView?.onQueryTextChanged {
+            searchDatabase(it)
         }
 
     }
 
 
     private fun searchDatabase(query: String) {
+
         val searchQuery = "%$query%"
 
         playerModel.getSearchResult(searchQuery = searchQuery).observe(this, { players ->

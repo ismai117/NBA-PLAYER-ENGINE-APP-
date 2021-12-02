@@ -1,19 +1,19 @@
 package com.im.nbaplayerengine.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.im.nbaplayerengine.R
-import com.im.nbaplayerengine.data.cache.SeasonCacheEntity
+import com.im.nbaplayerengine.data.local.seasons.SeasonCacheEntity
+import com.im.nbaplayerengine.model.seasons.Season
 import kotlinx.android.synthetic.main.seasonlayout.view.*
 
 class SeasonAdapter : RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>() {
 
-    lateinit var seasons: List<SeasonCacheEntity>
+    lateinit var seasons: List<Season>
 
-    fun setSeason(seasons: List<SeasonCacheEntity>){
+    fun setSeason(seasons: List<Season>){
         this.seasons = seasons
         notifyDataSetChanged()
     }
@@ -35,7 +35,10 @@ class SeasonAdapter : RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>() {
 
     class SeasonViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
 
-        fun bind(seasons: SeasonCacheEntity) {
+        fun bind(seasons: Season) {
+
+
+            itemView.seasons.text = seasons.season
 
             itemView.team.text = seasons.team
             itemView.gamesplayed.text = seasons.gamesPlayed
@@ -48,6 +51,7 @@ class SeasonAdapter : RecyclerView.Adapter<SeasonAdapter.SeasonViewHolder>() {
             itemView.fg.text = seasons.percentageFieldGoal
             itemView.fg3.text = seasons.percentageThree
             itemView.ft.text = seasons.percentageFreeThrow
+
         }
     }
 }

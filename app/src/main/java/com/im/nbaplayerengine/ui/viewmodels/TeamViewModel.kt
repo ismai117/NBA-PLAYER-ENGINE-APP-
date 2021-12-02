@@ -1,8 +1,9 @@
 package com.im.nbaplayerengine.ui.viewmodels
 
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.im.nbaplayerengine.data.repository.Repository
+import com.im.nbaplayerengine.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

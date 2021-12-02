@@ -10,24 +10,24 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.im.nbaplayerengine.R
-import com.im.nbaplayerengine.data.cache.PlayerCacheEntity
+import com.im.nbaplayerengine.data.local.players.PlayerCacheEntity
 import com.im.nbaplayerengine.databinding.FragmentPlayerProfileBinding
+import com.im.nbaplayerengine.model.player.Player
 import com.im.nbaplayerengine.ui.adapters.SeasonAdapter
 import com.im.nbaplayerengine.ui.viewmodels.SeasonViewModel
 import com.im.nbaplayerengine.ui.viewmodels.TeamViewModel
 import com.im.nbaplayerengine.utils.Resource
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_player_profile_.*
 import kotlinx.android.synthetic.main.fragment_player_profile_.view.*
-import java.lang.Error
+import kotlinx.coroutines.awaitAll
 
 @AndroidEntryPoint
 class PlayerProfile_Fragment : Fragment() {
 
     private var playerBinding: FragmentPlayerProfileBinding? = null
     private val binding get() = playerBinding!!
-    private var playerCacheEntity: PlayerCacheEntity? = null
+    private var player: Player? = null
     private val teamModel: TeamViewModel by viewModels()
     private val seasonModel: SeasonViewModel by viewModels()
     private lateinit var seasonAdapter: SeasonAdapter
@@ -49,28 +49,27 @@ class PlayerProfile_Fragment : Fragment() {
 
         arguments?.let {
 
-            playerCacheEntity = PlayerProfile_FragmentArgs.fromBundle(it).playerCacheEntity
-            if (playerCacheEntity != null) {
+            player = PlayerProfile_FragmentArgs.fromBundle(it).player
+            if (player != null) {
 
-                Picasso.get().load(playerCacheEntity?.headShotUrl).into(view.player_headshot)
+                Picasso.get().load(player?.headShotUrl).into(view.player_headshot)
 
 
-                binding.playerFullname.text =
-                    "${playerCacheEntity?.firstName} ${playerCacheEntity?.lastName}"
-                binding.playerTeamname.text = playerCacheEntity?.team
-                binding.playerPosition.text = playerCacheEntity?.position
-                binding.playerAge.text = playerCacheEntity?.age
-                binding.playerDateOfBirth.text = playerCacheEntity?.dateOfBirth
-                binding.playerHeight.text = playerCacheEntity?.height
-                binding.playerWeight.text = playerCacheEntity?.weight
-                binding.playerJerseyNumber.text = playerCacheEntity?.jerseyNumber
-                binding.careerPpg.text = playerCacheEntity?.careerPoints.toString()
-                binding.careerRpg.text = playerCacheEntity?.careerRebounds.toString()
-                binding.careerApg.text = playerCacheEntity?.carrerAssists.toString()
+                binding.playerFullname.text = "${player?.firstName} ${player?.lastName}"
+                binding.playerTeamname.text = player?.team
+                binding.playerPosition.text = player?.position
+                binding.playerAge.text = player?.age
+                binding.playerDateOfBirth.text = player?.dateOfBirth
+                binding.playerHeight.text = player?.height
+                binding.playerWeight.text = player?.weight
+                binding.playerJerseyNumber.text = player?.jerseyNumber
+                binding.careerPpg.text = player?.careerPoints.toString()
+                binding.careerRpg.text = player?.careerRebounds.toString()
+                binding.careerApg.text = player?.carrerAssists.toString()
                 binding.profileProgressBar.visibility = View.GONE
 
 
-                getTeamThemeColor(playerCacheEntity?.team, view)
+                getTeamThemeColor(player?.team, view)
 
                 binding.profileProgressBar.visibility = View.GONE
 
@@ -86,11 +85,10 @@ class PlayerProfile_Fragment : Fragment() {
         teamModel.allTeams.observe(this.viewLifecycleOwner) { result ->
 
             for (teams in result.data!!) {
-                if (playerCacheEntity?.team == teams.name) {
+                if (player?.team == teams.name) {
                     Picasso.get().load(teams.teamLogoUrl).into(binding.teamLogo)
                 }
             }
-
 
             binding.profileProgressBar.isVisible =
                 result is Resource.Loading && result.data.isNullOrEmpty()
@@ -102,7 +100,7 @@ class PlayerProfile_Fragment : Fragment() {
 
 
 
-        seasonModel.allSeasons(playerId = playerCacheEntity?.id)
+        seasonModel.allSeasons(playerId = player?.id)
             .observe(this.viewLifecycleOwner) { seasons ->
 
                 seasons?.let {
