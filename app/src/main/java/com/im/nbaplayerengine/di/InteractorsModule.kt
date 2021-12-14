@@ -1,13 +1,9 @@
 package com.im.nbaplayerengine.di
 
-import com.im.nbaplayerengine.data.local.players.PlayerCacheEntity
-import com.im.nbaplayerengine.data.local.util.PlayerCacheMapper
-import com.im.nbaplayerengine.data.local.util.SeasonCacheMapper
-import com.im.nbaplayerengine.data.local.util.TeamCacheMapper
-import com.im.nbaplayerengine.data.remote.util.PlayerResponseMapper
-import com.im.nbaplayerengine.data.remote.util.SeasonResponseMapper
-import com.im.nbaplayerengine.data.remote.util.TeamResponseMapper
-import com.im.nbaplayerengine.model.player.Player
+
+import com.im.nbaplayerengine.data.local.util.*
+import com.im.nbaplayerengine.data.remote.util.*
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,13 +29,26 @@ object InteractorsModule {
 
     @Singleton
     @Provides
-    fun provideSeasonResponseMapper(): SeasonResponseMapper{
+    fun provideSeasonResponseMapper(): SeasonResponseMapper {
         return SeasonResponseMapper()
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideNewsResponseMapper(): NewsResponseMapper {
+        return NewsResponseMapper()
     }
 
     @Singleton
     @Provides
-    fun providePlayerCacheMapper(): PlayerCacheMapper{
+    fun provideStandingResponseMapper(): StandingResponseMapper {
+        return StandingResponseMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun providePlayerCacheMapper(): PlayerCacheMapper {
         return PlayerCacheMapper()
     }
 
@@ -54,6 +63,19 @@ object InteractorsModule {
     fun provideSeasonCacheMapper(): SeasonCacheMapper {
         return SeasonCacheMapper()
     }
+
+    @Singleton
+    @Provides
+    fun provideNewsCacheMapper(): NewsCacheMapper {
+        return NewsCacheMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideStandingCacheMapper(): StandingCacheMapper{
+        return StandingCacheMapper()
+    }
+
 
 
 }

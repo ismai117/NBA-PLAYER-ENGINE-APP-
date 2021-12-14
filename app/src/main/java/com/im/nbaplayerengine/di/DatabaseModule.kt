@@ -2,7 +2,10 @@ package com.im.nbaplayerengine.di
 
 import android.content.Context
 import androidx.room.Room
+import com.im.nbaplayerengine.data.local.dashboard.StandingDao
 import com.im.nbaplayerengine.data.local.database.EngineDatabase
+import com.im.nbaplayerengine.data.local.news.NewsDao
+
 import com.im.nbaplayerengine.data.local.players.PlayerDao
 import com.im.nbaplayerengine.data.local.seasons.SeasonDao
 import com.im.nbaplayerengine.data.local.teams.TeamDao
@@ -44,6 +47,18 @@ object DatabaseModule {
     @Provides
     fun provideSeasonDao(engineDatabase: EngineDatabase): SeasonDao {
         return engineDatabase.getSeasonDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideNewsDao(engineDatabase: EngineDatabase): NewsDao{
+        return engineDatabase.getNewsDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideStandingDao(engineDatabase: EngineDatabase): StandingDao{
+        return engineDatabase.getStanding()
     }
 
 }

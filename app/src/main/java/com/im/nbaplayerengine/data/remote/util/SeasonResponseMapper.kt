@@ -31,7 +31,7 @@ class SeasonResponseMapper : EntityMapper<SeasonNetworkEntity, Season> {
 
     }
 
-    override fun fromDomainModel(cacheEntity: Season): SeasonNetworkEntity {
+    override fun fromDomainModel(entity: Season): SeasonNetworkEntity {
       TODO()
     }
 

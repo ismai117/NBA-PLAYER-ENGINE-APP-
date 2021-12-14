@@ -1,8 +1,7 @@
 package com.im.nbaplayerengine.data.remote.util
 
-import com.im.nbaplayerengine.data.local.players.PlayerCacheEntity
 import com.im.nbaplayerengine.data.remote.players.PlayerNetworkEntity
-import com.im.nbaplayerengine.model.player.Player
+import com.im.nbaplayerengine.model.players.Player
 import com.im.nbaplayerengine.model.util.EntityMapper
 
 class PlayerResponseMapper : EntityMapper<PlayerNetworkEntity, Player> {
@@ -34,7 +33,7 @@ class PlayerResponseMapper : EntityMapper<PlayerNetworkEntity, Player> {
 
     }
 
-    override fun fromDomainModel(cacheEntity: Player): PlayerNetworkEntity {
+    override fun fromDomainModel(entity: Player): PlayerNetworkEntity {
         TODO("Not yet implemented")
     }
 

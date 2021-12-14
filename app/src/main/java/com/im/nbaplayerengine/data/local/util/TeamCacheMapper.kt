@@ -1,8 +1,6 @@
 package com.im.nbaplayerengine.data.local.util
 
-import com.im.nbaplayerengine.data.local.players.PlayerCacheEntity
 import com.im.nbaplayerengine.data.local.teams.TeamCacheEntity
-import com.im.nbaplayerengine.model.player.Player
 import com.im.nbaplayerengine.model.teams.Team
 import com.im.nbaplayerengine.model.util.EntityMapper
 import kotlinx.coroutines.flow.Flow

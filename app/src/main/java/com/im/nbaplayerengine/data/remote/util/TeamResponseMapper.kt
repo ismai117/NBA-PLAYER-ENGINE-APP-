@@ -18,7 +18,7 @@ class TeamResponseMapper : EntityMapper<TeamNetworkEntity, Team> {
         )
     }
 
-    override fun fromDomainModel(cacheEntity: Team): TeamNetworkEntity {
+    override fun fromDomainModel(entity: Team): TeamNetworkEntity {
         TODO("Not yet implemented")
     }
 
