@@ -17,7 +17,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="50dp"
             android:lineSpacingExtra="4sp"
-            android:maxWidth="320dp"
+            android:maxWidth="350dp"
             android:text="How PSG can turn the tide against Real Madrid"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -51,6 +51,8 @@
 
 
         <TextView
+            android:gravity="center_vertical"
+            android:text="CLEVELAND, Dec. 16, 2021 -- The NBA today announced that tickets are on sale now for events taking place Friday, Feb. 18 and Saturday, Feb.19 in Cleveland: Ruffles NBA All-Star Celebrity Game, Clorox Rising Stars, NBA All-Star Practice presented by AT&amp;T and the NBA HBCU Classic presented by AT&amp;T. Tickets are available at NBAEvents.com and through the NBA Events App, which can be downloaded in the Apple Store or Google Play Store. The Ruffles NBA All-Star Celebrity Game tips off on Friday, February 18 at 7 p."
             android:id="@+id/article_summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

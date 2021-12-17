@@ -41,6 +41,8 @@ class ArticleFragment : Fragment() {
                 summary = article.summary
                 media = article.media
 
+
+
             }
 
 
@@ -58,7 +60,7 @@ class ArticleFragment : Fragment() {
 
         binding.articleTitle.text = title
         Glide.with(requireContext()).load(media).into(binding.articleImage)
-        binding.articleSummary.text = summary
+        binding.articleSummary.text = summary?.split("(?<=[.])\\\\s+").toString();
 
 
 

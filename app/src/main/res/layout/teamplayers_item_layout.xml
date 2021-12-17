@@ -11,6 +11,7 @@
         android:layout_height="200dp">
 
         <TextView
+            android:textColor="@color/black"
             android:gravity="center"
             android:id="@+id/teamPlayer_fullname"
             android:layout_width="wrap_content"
@@ -32,6 +33,7 @@
 
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/age_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,6 +43,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/height_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,6 +55,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:textColor="@color/black"
                 android:id="@+id/weight_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,6 +68,7 @@
 
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -74,6 +79,7 @@
                 android:layout_alignStart="@id/age_title"/>
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -84,6 +90,7 @@
                 android:layout_alignStart="@id/height_title"/>
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -108,6 +115,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/teamPlayer_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,6 +128,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:textColor="@color/black"
             android:id="@+id/teamPlayer_position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
