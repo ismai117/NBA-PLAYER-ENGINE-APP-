@@ -44,7 +44,7 @@ class NewsFragment : Fragment() {
         newsBinding = FragmentNewsBinding.inflate(inflater, container,false)
         val view = binding.root
 
-        requireActivity().toolbar.title = "News"
+
 
         newsModel.response.observe(this.viewLifecycleOwner, { result ->
 

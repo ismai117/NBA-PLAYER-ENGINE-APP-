@@ -47,7 +47,7 @@ class PlayerProfileFragment : Fragment() {
         val view = binding.root
 
 
-        requireActivity().toolbar.title = "Profile"
+
 
         arguments?.let {
 

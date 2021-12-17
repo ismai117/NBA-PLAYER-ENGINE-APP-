@@ -1,22 +1,23 @@
 package com.im.nbaplayerengine.repository
 
 import android.util.Log
-import androidx.room.Query
 import androidx.room.withTransaction
-import com.im.nbaplayerengine.data.local.dashboard.StandingCacheEntity
 import com.im.nbaplayerengine.data.local.dashboard.StandingDao
 import com.im.nbaplayerengine.data.local.database.EngineDatabase
+import com.im.nbaplayerengine.data.local.games.GamesDao
 import com.im.nbaplayerengine.data.local.news.NewsDao
 import com.im.nbaplayerengine.data.local.players.PlayerDao
 import com.im.nbaplayerengine.data.local.seasons.SeasonDao
 import com.im.nbaplayerengine.data.local.teams.TeamDao
 import com.im.nbaplayerengine.data.local.util.*
+import com.im.nbaplayerengine.data.remote.service.GamesService
 
 import com.im.nbaplayerengine.data.remote.service.NewsService
 
 import com.im.nbaplayerengine.data.remote.service.PlayerService
 import com.im.nbaplayerengine.data.remote.service.StandingService
 import com.im.nbaplayerengine.data.remote.util.*
+import com.im.nbaplayerengine.model.games.Games
 
 import com.im.nbaplayerengine.model.news.News
 import com.im.nbaplayerengine.model.players.Player
@@ -37,20 +38,24 @@ constructor(
     private val seasonDao: SeasonDao,
     private val newsDao: NewsDao,
     private val standingDao: StandingDao,
+    private val gamesDao: GamesDao,
     private val playerSerice: PlayerService,
     private val newsService: NewsService,
     private val standingService: StandingService,
+    private val gamesService: GamesService,
     private val engineDatabase: EngineDatabase,
     private val playerResponseMapper: PlayerResponseMapper,
     private val teamResponseMapper: TeamResponseMapper,
     private val seasonResponseMapper: SeasonResponseMapper,
     private val newsResponseMapper: NewsResponseMapper,
     private val standingResponseMapper: StandingResponseMapper,
+    private val gamesResponseMapper: GamesResponseMapper,
     private val playerCacheMapper: PlayerCacheMapper,
     private val teamCacheMapper: TeamCacheMapper,
     private val seasonCacheMapper: SeasonCacheMapper,
     private val newsCacheMapper: NewsCacheMapper,
     private val standingCacheMapper: StandingCacheMapper,
+    private val gamesCacheMapper: GamesCacheMapper
 ) {
 
 
@@ -59,11 +64,31 @@ constructor(
         return standingCacheMapper.mapFromFlowEntityList(standingDao.getEasternConference(conference))
     }
 
-
     fun getWesternConference(conference: String): Flow<List<Standing>> {
         return standingCacheMapper.mapFromFlowEntityList(standingDao.getWesternConference(conference))
     }
 
+
+    fun getGames(host: String, key: String, date: String, code: String): Flow<Resource<List<Games>>> {
+
+        return networkBoundResource(
+            query = {
+               gamesCacheMapper.fromNetworkEntityFlowList(gamesDao.getGames())
+            },
+            fetch = {
+                val response = gamesService.getGames(host, key, date, code).data
+                gamesResponseMapper.fromNetworkEntityListList(response)
+            },
+            saveFetchResult = {
+                engineDatabase.withTransaction {
+                    gamesDao.deleteAllGames()
+                    it.forEach {
+                        gamesDao.insert(gamesCacheMapper.mapToEntityList(it))
+                    }
+                }
+            }
+        )
+    }
 
     fun getStandings(host: String, key: String): Flow<Resource<List<Standing>>> {
 

@@ -3,6 +3,7 @@ package com.im.nbaplayerengine.ui.players.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.core.view.isVisible
@@ -32,9 +33,6 @@ class PlayersFragment : Fragment() {
 
         playerAdapter = PlayerAdapter()
 
-        setHasOptionsMenu(true)
-
-
 
     }
 
@@ -47,7 +45,7 @@ class PlayersFragment : Fragment() {
         homeBinding = FragmentPlayersBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        requireActivity().toolbar.title = "Players"
+
 
         playerModel.allPlayers.observe(this.viewLifecycleOwner) { result ->
 
@@ -80,7 +78,7 @@ class PlayersFragment : Fragment() {
         }
 
 
-
+        setHasOptionsMenu(true)
 
         return view
     }

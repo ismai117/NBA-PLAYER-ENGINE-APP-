@@ -55,7 +55,6 @@ class ArticleFragment : Fragment() {
         val view = binding.root
 
 
-        requireActivity().toolbar.title = "Article"
 
         binding.articleTitle.text = title
         Glide.with(requireContext()).load(media).into(binding.articleImage)

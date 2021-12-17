@@ -1,6 +1,7 @@
 package com.im.nbaplayerengine.di
 
 
+import com.im.nbaplayerengine.data.remote.service.GamesService
 import com.im.nbaplayerengine.data.remote.service.NewsService
 import com.im.nbaplayerengine.data.remote.service.PlayerService
 import com.im.nbaplayerengine.data.remote.service.StandingService
@@ -103,6 +104,56 @@ object NetworkModule {
     fun provideStandingService(@Named("standing") retrofit: Retrofit): StandingService {
         return retrofit.create(StandingService::class.java)
     }
+
+
+    @Singleton
+    @Provides
+    @Named("games")
+    fun provideGames(
+        moshi: Moshi,
+        okHttpClient: OkHttpClient
+    ): Retrofit{
+        return Retrofit.Builder()
+            .baseUrl("https://livescore-basketball.p.rapidapi.com/")
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
+            .build()
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideGamesService(@Named("games") retrofit: Retrofit): GamesService {
+        return retrofit.create(GamesService::class.java)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

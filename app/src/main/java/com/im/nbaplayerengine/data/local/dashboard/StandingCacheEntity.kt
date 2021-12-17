@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity(tableName = "league_table")
+@Entity(tableName = "standing_table")
 data class StandingCacheEntity(
 
     @PrimaryKey(autoGenerate = true)

@@ -35,7 +35,7 @@ class TeamsFragment : Fragment() {
         teamsBinding = FragmentTeamsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        requireActivity().toolbar.title = "Teams"
+
 
         teamModel.allTeams.observe(this.viewLifecycleOwner) { result ->
 

@@ -48,6 +48,12 @@ object InteractorsModule {
 
     @Singleton
     @Provides
+    fun provideGamesResponseMapper(): GamesResponseMapper {
+        return GamesResponseMapper()
+    }
+
+    @Singleton
+    @Provides
     fun providePlayerCacheMapper(): PlayerCacheMapper {
         return PlayerCacheMapper()
     }
@@ -74,6 +80,12 @@ object InteractorsModule {
     @Provides
     fun provideStandingCacheMapper(): StandingCacheMapper{
         return StandingCacheMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideGamesCacheMapper(): GamesCacheMapper{
+        return GamesCacheMapper()
     }
 
 

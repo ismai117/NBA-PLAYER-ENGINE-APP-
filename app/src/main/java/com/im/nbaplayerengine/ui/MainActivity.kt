@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawer: DrawerLayout
-    private lateinit var toolbar: Toolbar
     private lateinit var nav: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +30,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         drawer = findViewById(R.id.mainDrawer)
-        toolbar = findViewById(R.id.toolbar)
-        toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -43,8 +41,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav.setNavigationItemSelectedListener(this)
 
-    }
+        supportActionBar?.title = "NBAPLAYERENGINE"
 
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
@@ -61,21 +60,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
             R.id.home_menu -> {
                 findNavController(R.id.navhost).navigate(R.id.dashboardFragment)
+                supportActionBar?.title = "NBAPLAYERENGINE"
                 return true
             }
 
             R.id.news_menu -> {
                 findNavController(R.id.navhost).navigate(R.id.newsFragment)
+                supportActionBar?.title = "News"
                 return true
             }
 
             R.id.players_menu -> {
                 findNavController(R.id.navhost).navigate(R.id.playersFragment)
+                supportActionBar?.title = "Players"
                 return true
             }
 
             R.id.teams_menu -> {
                 findNavController(R.id.navhost).navigate(R.id.teamsFragment)
+                supportActionBar?.title = "Teams"
                 return true
             }
 

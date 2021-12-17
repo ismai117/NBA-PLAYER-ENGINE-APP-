@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.im.nbaplayerengine.data.local.dashboard.StandingDao
 import com.im.nbaplayerengine.data.local.database.EngineDatabase
+import com.im.nbaplayerengine.data.local.games.GamesDao
 import com.im.nbaplayerengine.data.local.news.NewsDao
 
 import com.im.nbaplayerengine.data.local.players.PlayerDao
@@ -59,6 +60,12 @@ object DatabaseModule {
     @Provides
     fun provideStandingDao(engineDatabase: EngineDatabase): StandingDao{
         return engineDatabase.getStanding()
+    }
+
+    @Singleton
+    @Provides
+    fun provideGamesDao(engineDatabase: EngineDatabase): GamesDao{
+        return engineDatabase.getGames()
     }
 
 }

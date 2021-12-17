@@ -34,7 +34,7 @@ class TeamPlayersFragment : Fragment() {
         teamplayersBinding = FragmentTeamPlayersBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        requireActivity().toolbar.title = "Team Players"
+
 
         arguments?.let {
 
