@@ -41,6 +41,9 @@ class WesternConferenceAdapter :
             Glide.with(itemView.context).load(standing.team).into(itemView.standing_team_logo)
             itemView.standing_team_name.text = standing.logo.toString()
 
+            itemView.win_value.text = standing.win.toString()
+            itemView.loss_value.text = standing.lose.toString()
+
         }
 
 

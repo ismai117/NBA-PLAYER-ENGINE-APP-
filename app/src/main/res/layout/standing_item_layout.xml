@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    app:cardUseCompatPadding="true"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="30dp">
 
         <TextView
-            android:textColor="@color/black"
-            android:layout_marginStart="12dp"
             android:id="@+id/standing_team_position"
             android:layout_width="20dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,36 +24,104 @@
 
         <LinearLayout
             android:id="@+id/standing_team_logo_layout"
-            android:gravity="center"
-            android:layout_marginStart="15dp"
-            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:gravity="center"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/standing_team_position"
             app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/standing_team_logo"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:scaleType="centerCrop"/>
+            <ImageView
+                android:id="@+id/standing_team_logo"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_test" />
 
         </LinearLayout>
 
         <TextView
-            android:textColor="@color/black"
-            android:layout_marginStart="12dp"
             android:id="@+id/standing_team_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/standing_team_logo_layout"
             app:layout_constraintTop_toTopOf="parent" />
 
 
+        <LinearLayout
+            android:layout_marginRight="20dp"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/win_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="W"
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:text="8"
+                android:id="@+id/win_value"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/loss_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20sp"
+                android:gravity="center"
+                android:text="L"
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:text="8"
+                android:id="@+id/loss_value"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
