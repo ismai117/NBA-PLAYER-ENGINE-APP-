@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         drawer = findViewById(R.id.mainDrawer)
-        toolbar = findViewById(R.id.toolbar)
 
+        toolbar = findViewById(R.id.toolbar)
 
         setSupportActionBar(toolbar)
         supportActionBar?.title = "Home"

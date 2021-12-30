@@ -3,10 +3,12 @@ package com.im.nbaplayerengine.ui.teams.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.im.nbaplayerengine.R
 import com.im.nbaplayerengine.model.players.Player
+import com.im.nbaplayerengine.ui.teams.fragments.TeamPlayersFragmentDirections
 import kotlinx.android.synthetic.main.teamplayers_item_layout.view.*
 
 class TeamPlayersAdapter : RecyclerView.Adapter<TeamPlayersAdapter.PlayerViewHolder>() {
@@ -46,6 +48,18 @@ class TeamPlayersAdapter : RecyclerView.Adapter<TeamPlayersAdapter.PlayerViewHol
 
             itemView.teamPlayer_number.text = player.jerseyNumber
             itemView.teamPlayer_position.text = player.position
+
+            val position = adapterPosition
+
+            itemView.setOnClickListener {
+                if(position == adapterPosition){
+
+                    val action = TeamPlayersFragmentDirections.actionTeamPlayersFragmentToPlayerProfileFragment()
+                    action.player = player
+                    Navigation.findNavController(it).navigate(action)
+
+                }
+            }
 
 
         }

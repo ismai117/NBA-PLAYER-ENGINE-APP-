@@ -59,6 +59,9 @@
             android:defaultValue="@null"
             app:argType="com.im.nbaplayerengine.model.teams.Team"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_teamPlayersFragment_to_playerProfile_Fragment"
+            app:destination="@id/playerProfile_Fragment" />
     </fragment>
     <fragment
         android:id="@+id/newsFragment"
