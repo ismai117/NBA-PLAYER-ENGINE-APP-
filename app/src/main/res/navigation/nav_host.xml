@@ -9,18 +9,8 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.im.nbaplayerengine.ui.dashboard.fragments.DashboardFragment"
-        android:label=""
-        tools:layout="@layout/fragment_dashboard">
-        <action
-            android:id="@+id/action_dashboardFragment_to_playersFragment"
-            app:destination="@id/playersFragment" />
-        <action
-            android:id="@+id/action_dashboardFragment_to_teamsFragment"
-            app:destination="@id/teamsFragment" />
-        <action
-            android:id="@+id/action_dashboardFragment_to_newsFragment"
-            app:destination="@id/newsFragment" />
-    </fragment>
+        android:label="Home"
+        tools:layout="@layout/fragment_dashboard"/>
 
     <fragment
         android:id="@+id/playersFragment"
@@ -30,9 +20,6 @@
         <action
             android:id="@+id/action_playersFragment_to_playerProfile_Fragment"
             app:destination="@id/playerProfile_Fragment" />
-        <action
-            android:id="@+id/action_playersFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
     </fragment>
 
     <fragment
@@ -56,9 +43,6 @@
         android:label="Teams"
         tools:layout="@layout/fragment_teams">
         <action
-            android:id="@+id/action_teamsFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
-        <action
             android:id="@+id/action_teamsFragment_to_teamPlayersFragment"
             app:destination="@id/teamPlayersFragment" />
     </fragment>
@@ -80,9 +64,6 @@
         android:id="@+id/newsFragment"
         android:name="com.im.nbaplayerengine.ui.news.fragments.NewsFragment"
         android:label="News">
-        <action
-            android:id="@+id/action_newsFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
         <action
             android:id="@+id/action_newsFragment_to_articleFragment"
             app:destination="@id/articleFragment" />

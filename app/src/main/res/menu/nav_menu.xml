@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home_menu"
+        android:id="@+id/dashboardFragment"
         android:title="Home">
 
     </item>
     <item
-        android:id="@+id/news_menu"
+        android:id="@+id/newsFragment"
         android:title="News">
 
     </item>
     <item
-        android:id="@+id/players_menu"
+        android:id="@+id/playersFragment"
         android:title="Players">
 
     </item>
     <item
-        android:id="@+id/teams_menu"
+        android:id="@+id/teamsFragment"
         android:title="Teams">
 
     </item>

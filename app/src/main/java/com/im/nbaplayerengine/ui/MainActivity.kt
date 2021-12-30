@@ -21,70 +21,49 @@ import kotlinx.android.synthetic.main.activity_main.*
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawer: DrawerLayout
-    private lateinit var nav: NavigationView
+    private lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         drawer = findViewById(R.id.mainDrawer)
-        toggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
+        toolbar = findViewById(R.id.toolbar)
+
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Home"
+
+        toggle = ActionBarDrawerToggle(this, drawer, toolbar, R.string.open, R.string.close)
         drawer.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav = findViewById(R.id.mainNav)
+        val appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.dashboardFragment,
+            R.id.playersFragment,
+            R.id.newsFragment,
+            R.id.teamsFragment
+        ),
+            drawer)
 
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navhost) as NavHostFragment
+        val navController = navHostFragment.navController
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration)
 
-        nav.setNavigationItemSelectedListener(this)
+        mainNav.setNavigationItemSelectedListener(this)
 
-        supportActionBar?.title = "NBAPLAYERENGINE"
-
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if (toggle.onOptionsItemSelected(item)) {
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
-        when (item.itemId) {
-
-            R.id.home_menu -> {
-                findNavController(R.id.navhost).navigate(R.id.dashboardFragment)
-                supportActionBar?.title = "NBAPLAYERENGINE"
-                return true
-            }
-
-            R.id.news_menu -> {
-                findNavController(R.id.navhost).navigate(R.id.newsFragment)
-                supportActionBar?.title = "News"
-                return true
-            }
-
-            R.id.players_menu -> {
-                findNavController(R.id.navhost).navigate(R.id.playersFragment)
-                supportActionBar?.title = "Players"
-                return true
-            }
-
-            R.id.teams_menu -> {
-                findNavController(R.id.navhost).navigate(R.id.teamsFragment)
-                supportActionBar?.title = "Teams"
-                return true
-            }
-
-        }
-
-        return false
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navhost) as NavHostFragment
+        val navController = navHostFragment.navController
+        return item.onNavDestinationSelected(navController)
     }
 
 
